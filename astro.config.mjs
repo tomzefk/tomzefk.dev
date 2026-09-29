@@ -2,4 +2,16 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig({});
+import { fileURLToPath } from "node:url";
+
+export default defineConfig({
+    vite: {
+        resolve: {
+            alias: {
+                "@styles": fileURLToPath(
+                    new URL("./src/styles", import.meta.url)
+                ),
+            },
+        },
+    },
+});

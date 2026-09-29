@@ -1,0 +1,22 @@
+---
+const { href } = Astro.props;
+---
+
+<a class="link" href={href} target="_blank" rel="noopener noreferrer"
+    ><slot /><img src="/icons/arrow-diagonal.svg" width="12" height="21" alt="" /></a
+>
+
+<style lang="scss">
+    @use "@styles/variables" as *;
+
+    .link {
+        display: inline-flex;
+        flex-direction: row;
+        gap: 2px;
+
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+    }
+</style>

@@ -1,13 +1,224 @@
 ---
-import Layout from '../layouts/Page.astro'
-import Styles from '../styles/globals.scss'
+import Layout from "@layouts/Page.astro";
+import Link from "@components/Link.astro";
+import Detail from "@components/Details.astro";
+import "../styles/globals.scss";
 ---
 
 <Layout>
 	<div id="page">
-		<header></header>
+		<header>
+			<Detail>lisbon • 23°C • 09:41</Detail>
+			<Detail>under developement</Detail>
+		</header>
 		<main>
-			<section></section>
+			<section id="hero">
+				<div id="name">
+					<h1>Hello,</h1>
+					<div>
+						<h1>I'm Tomás.</h1>
+						<span><Detail>aka tomzefk</Detail></span>
+					</div>
+				</div>
+				<div id="description">
+					<p>
+						Developer, maker, and perpetual learner. Based in
+						Portugal.
+					</p>
+					<nav id="socials" aria-label="Social links">
+						<a
+							href="https://github.com/tomzefk"
+							aria-label="GitHub"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img
+								src="/icons/github.svg"
+								width="24"
+								height="24"
+								alt=""
+							/>
+						</a>
+						<a
+							href="https://github.com/tomzefk"
+							aria-label="Linkedin"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img
+								src="/icons/linkedin.svg"
+								width="24"
+								height="24"
+								alt=""
+							/>
+						</a>
+						<a
+							href="https://instagram.com/tomzefk.js"
+							aria-label="Instagram"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img
+								src="/icons/instagram.svg"
+								width="24"
+								height="24"
+								alt=""
+							/>
+						</a>
+					</nav>
+				</div>
+			</section>
+
+			<section id="currently">
+				<h2>Currently</h2>
+				<p>
+					I'm currently working at <Link href="https://www.martinhal.com/">Martinhal</Link> as a Junior Web Developer building websites, digital experiences,
+					and tools that make everyday work easier.
+				</p>
+				<p>
+					I'm also the web and technical guy behind <Link
+						href="https://www.blindlens.co.uk/">BLINDLENS</Link
+					> , where I built an on-site server which is also working as an
+					editing NAS. I worked on the underlying infrastructure, deployed
+					a CMS, and a client-facing platform for managing and delivering
+					project files.
+				</p>
+				<p>
+					In my free time, I'm building my own homelab, exploring
+					self-hosting and infrastructure while running services for
+					myself and my loved ones.
+				</p>
+				<br />
+				<p>
+					With love,<br />
+					Tomás
+				</p>
+				<img src="/icons/logo.svg" width="32" height="32" alt="" />
+			</section>
 		</main>
 	</div>
 </Layout>
+
+<!-- --- -->
+
+<style lang="scss">
+	@use "../styles/variables" as *;
+
+	#page {
+		// width: 100%;
+		max-width: 768px;
+		margin-inline: auto;
+
+		@media screen and (max-width: calc(768px + 4rem)) {
+			padding-inline: 2rem;
+		}
+
+		header {
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			padding: 16px 0px;
+			white-space: nowrap;
+
+			:global(span) {
+				font-weight: 300;
+				color: #{$neutral-light}80;
+			}
+
+			@media screen and (max-width: 440px) {
+				flex-direction: column;
+				text-align: center;
+			}
+		}
+
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: 4rem;
+
+			padding: 64px 0;
+
+			#hero {
+				display: flex;
+				flex-direction: column;
+				gap: 3rem;
+
+				#name {
+					margin-left: -0.15rem;
+
+					h1 {
+						font-family: "Nunito", sans-serif;
+						color: $neutral-light;
+						margin: 0;
+					}
+
+					> h1 {
+						margin-left: -0.35rem;
+						font-weight: 400;
+						font-size: 6rem;
+						line-height: 1em;
+					}
+
+					div {
+						display: inline-flex;
+						flex-direction: column;
+						align-items: flex-end;
+
+						h1 {
+							display: inline-block;
+							font-weight: 300;
+							font-size: 2rem;
+						}
+
+						:global(span) {
+							font-weight: 200;
+							color: $secondary;
+						}
+					}
+				}
+
+				#description {
+					display: flex;
+					flex-direction: column;
+					gap: 2em;
+
+					p {
+						margin: 0;
+						font-family: "Sono", sans-serif;
+						font-variation-settings: "MONO" 0;
+						font-weight: 300;
+						font-size: 1rem;
+						color: $neutral-light;
+					}
+
+					#socials {
+						display: flex;
+						gap: 8px;
+
+						img {
+							height: 1.5rem;
+						}
+					}
+				}
+			}
+
+			#currently {
+				h2 {
+					font-family: "Doto", sans-serif;
+					font-size: 1rem;
+					font-weight: 200;
+					text-transform: lowercase;
+					color: $secondary;
+				}
+
+				p {
+					font-family: "Nunito", sans-serif;
+					font-variation-settings: "MONO" 0;
+					font-weight: 300;
+					font-size: 1rem;
+					color: $neutral-light;
+				}
+			}
+		}
+	}
+</style>

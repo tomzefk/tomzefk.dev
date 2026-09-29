@@ -1,0 +1,24 @@
+<span class="detail"><slot /></span>
+
+<style lang="scss">
+    @use "@styles/variables" as *;
+
+    .detail {
+        position: relative;
+        padding-inline: 1rem;
+
+        font-family: "Doto", sans-serif;
+        text-transform: lowercase;
+
+        &:before {
+            position: absolute;
+            content: "[";
+            left: 0;
+        }
+        &:after {
+            content: "]";
+            position: absolute;
+            right: 0;
+        }
+    }
+</style>
