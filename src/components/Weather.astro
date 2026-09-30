@@ -11,7 +11,7 @@
             const res = await fetch(endpoint);
             const data = await res.json();
 
-            temp.textContent = `${data.current.temperature_2m}${data.current_units.temperature_2m}`;
+            temp.textContent = `${Math.round(data.current.temperature_2m)}${data.current_units.temperature_2m}`;
         } catch (err) {
             temp.textContent = "xx°c";
             console.error("Failed to fetch weather:", err);
