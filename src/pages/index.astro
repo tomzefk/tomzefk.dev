@@ -8,7 +8,7 @@ import "../styles/globals.scss";
 <Layout>
 	<div id="page">
 		<header>
-			<Detail>lisbon • 23°C • 09:41</Detail>
+			<Detail>lisbon • <span id="temp">xx°C</span> • <span id="clk">xx:xx</span></Detail>
 			<Detail>under developement</Detail>
 		</header>
 		<main>
@@ -72,7 +72,9 @@ import "../styles/globals.scss";
 			<section id="currently">
 				<h2>Currently</h2>
 				<p>
-					I'm currently working at <Link href="https://www.martinhal.com/">Martinhal</Link> as a Junior Web Developer building websites, digital experiences,
+					I'm currently working at <Link
+						href="https://www.martinhal.com/">Martinhal</Link
+					> as a Junior Web Developer building websites, digital experiences,
 					and tools that make everyday work easier.
 				</p>
 				<p>
@@ -98,6 +100,42 @@ import "../styles/globals.scss";
 		</main>
 	</div>
 </Layout>
+
+<script>
+	const endpoint =
+		"https://api.open-meteo.com/v1/forecast?latitude=38.7251&longitude=-9.1498&current=temperature_2m&timezone=Europe%2FLondon&forecast_days=1";
+
+	const temp = document.querySelector("#temp");
+
+	try {
+		const res = await fetch(endpoint);
+		const data = await res.json();
+
+		console.log(data)
+
+		temp.textContent = `${data.current.temperature_2m}${data.current_units.temperature_2m}`;
+	} catch (err) {
+		temp.textContent = "xx°c";
+		console.error("Failed to fetch weather:", err);
+	}
+</script>
+
+<script>
+  const clk = document.querySelector("#clk");
+
+  function updateClk() {
+    const n = new Date();
+
+    clk.textContent = n.toLocaleTimeString("en-GB", {
+      timeZone: "Europe/Lisbon",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
+  updateClk();
+  setInterval(updateClk, 1000);
+</script>
 
 <!-- --- -->
 
