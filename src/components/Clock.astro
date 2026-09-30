@@ -1,0 +1,18 @@
+<span id="clk">xx:xx</span>
+
+<script>
+    const clk = document.querySelector("#clk");
+
+    function updateClk() {
+        const n = new Date();
+
+        clk.textContent = n.toLocaleTimeString("en-GB", {
+            timeZone: "Europe/Lisbon",
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+    }
+
+    updateClk();
+    setInterval(updateClk, 1000);
+</script>
