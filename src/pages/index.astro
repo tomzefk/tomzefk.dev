@@ -129,7 +129,6 @@ import Clock from "@components/Clock.astro";
 	let frame = 0;
 
 	setInterval(() => {
-		console.log("yoyo");
 		frame = (frame + 1) % images.length;
 		animation.src = images[frame].src;
 	}, 166);
