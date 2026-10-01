@@ -1,4 +1,4 @@
-<span class="detail"><slot /></span>
+<p class="detail"><slot /></p>
 
 <style lang="scss">
     @use "@styles/variables" as *;
@@ -6,6 +6,8 @@
     .detail {
         position: relative;
         padding-inline: 1rem;
+
+        margin: 0;
 
         font-family: "Doto", sans-serif;
         text-transform: lowercase;

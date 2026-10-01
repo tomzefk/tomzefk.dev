@@ -2,8 +2,8 @@
 import Layout from "@layouts/Page.astro";
 import Link from "@components/Link.astro";
 import Detail from "@components/Details.astro";
-import Weather from "@components/Weather.astro"
-import Clock from "@components/Clock.astro"
+import Weather from "@components/Weather.astro";
+import Clock from "@components/Clock.astro";
 ---
 
 <Layout>
@@ -15,8 +15,15 @@ import Clock from "@components/Clock.astro"
 		<main>
 			<section id="hero">
 				<div id="name">
-					<h1>Hello,</h1>
-					<div>
+					<div id="hello">
+						<img
+							src="/assets/hello/hello-frame-001.svg"
+							width="240"
+							height="128"
+							alt="Hello"
+						/>
+					</div>
+					<div id="name-wrapper">
 						<h1>I'm Tomás.</h1>
 						<span><Detail>aka tomzefk</Detail></span>
 					</div>
@@ -102,6 +109,32 @@ import Clock from "@components/Clock.astro"
 	</div>
 </Layout>
 
+<script>
+	const frames = [
+		"/assets/hello/hello-frame-001.svg",
+		"/assets/hello/hello-frame-002.svg",
+		"/assets/hello/hello-frame-003.svg",
+		"/assets/hello/hello-frame-004.svg",
+		"/assets/hello/hello-frame-005.svg",
+	];
+
+	const images = frames.map((src) => {
+		const img = new Image();
+		img.src = src;
+		return img;
+	});
+
+	const animation = document.querySelector("#hello img");
+
+	let frame = 0;
+
+	setInterval(() => {
+		console.log("yoyo");
+		frame = (frame + 1) % images.length;
+		animation.src = images[frame].src;
+	}, 166);
+</script>
+
 <!-- --- -->
 
 <style lang="scss">
@@ -123,7 +156,7 @@ import Clock from "@components/Clock.astro"
 			padding: 16px 0px;
 			white-space: nowrap;
 
-			:global(span) {
+			:global(.detail) {
 				font-weight: 300;
 				color: #{$neutral-light}80;
 			}
@@ -147,33 +180,27 @@ import Clock from "@components/Clock.astro"
 				gap: 3rem;
 
 				#name {
+					display: inline-flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 1rem;
 					margin-left: -0.15rem;
 
-					h1 {
-						font-family: "Nunito", sans-serif;
-						color: $neutral-light;
-						margin: 0;
-					}
-
-					> h1 {
-						margin-left: -0.35rem;
-						font-weight: 400;
-						font-size: 6rem;
-						line-height: 1em;
-					}
-
-					div {
+					div#name-wrapper {
 						display: inline-flex;
 						flex-direction: column;
 						align-items: flex-end;
 
 						h1 {
 							display: inline-block;
+							font-family: "Nunito", sans-serif;
 							font-weight: 300;
 							font-size: 2rem;
+							color: $neutral-light;
+							margin: 0;
 						}
 
-						:global(span) {
+						:global(.detail) {
 							font-weight: 200;
 							color: $secondary;
 						}
